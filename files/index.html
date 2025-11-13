@@ -263,14 +263,23 @@ body{
 }
 
 .hero button {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
   padding: 20px 40px;
   font-size: 28px;
-  border-radius: 60px;
+  font-weight: 500;
   background: linear-gradient(90deg, #ff4e50, #f9d423, #ff6f00, #ff4e50);
   background-size: 400% 400%;
   animation: gradientShift 4s ease infinite;
-  position: static;
+  color: #fff;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  white-space: nowrap;  /* ← THIS FORCES SINGLE LINE */
+  transition: 0.25s ease;
 }
+
 
 
 .hero button:hover {
