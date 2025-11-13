@@ -588,6 +588,106 @@ body {
   padding: 12px;
   text-align: left;
 }
+  @media (max-width: 850px) {
+
+  .hero {
+    height: auto;
+    padding: 40px 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 25px !important;
+  }
+
+  .hero-text {
+    margin: 0 !important;
+  }
+
+  .hero-text h1 {
+    font-size: 32px !important;
+    line-height: 1.25 !important;
+    margin: 0 auto !important;
+  }
+
+  /* MOBILE APPLY BUTTON FIX — stays on ONE line */
+  .hero button {
+    position: static !important;
+    margin: 0 auto !important;
+    padding: 16px 28px !important;
+    font-size: 20px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    gap: 12px !important;
+  }
+
+  .hero button .arrow {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+/* ===== MOBILE FIX FOR SLIDER ===== */
+@media (max-width: 850px) {
+
+  .slider {
+    width: 100%;
+    height: auto !important;
+    overflow: hidden;
+  }
+
+  .slides-track {
+    height: auto !important;
+  }
+
+  .slide img,
+  .slide {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+  }
+
+}
+/* ===== MOBILE FIX FOR PARTNER CARDS (STACK LIKE AUDIENCE CARDS) ===== */
+@media (max-width: 850px) {
+
+  /* stack vertically */
+  .right-column {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+  }
+
+  /* make each card full-width like Students/Entrepreneurs */
+  .img-card {
+    width: 90% !important;
+    max-width: 380px !important;
+    height: auto !important;
+    border-radius: 20px !important;
+  }
+
+  /* image inside card */
+  .img-card img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
+  }
+
+  /* center the text like your audience cards */
+  .img-card span {
+    font-size: 26px !important;
+    bottom: 18px !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+}
 .mobile-nav a {
   color: white;
   padding: 12px 10px;
