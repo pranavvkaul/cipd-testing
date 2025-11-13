@@ -253,51 +253,25 @@ body{
 .hero-content {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: -50px; /* move button right */
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
 }
-
-.hero button {
-  position: relative;
-  left: -270px; /* negative moves left */      /* positive moves down */
-}
-
-
-
-.hero-text {
-  position: relative;
-  margin-left: -70px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 30px; /* space between text and button */
-}
-
 
 .hero-text {
   flex: 1;
 }
+
 .hero button {
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
-
-  padding: 26px 60px; /* BIGGER BUTTON */
-  font-size: 24px;    /* BIGGER FONT */
-  font-weight: 400;
-  background: linear-gradient(90deg, #ff4e50, #ff6f00, #ff4e50);
-
-  color: #fff;
-
-  border: none;
+  padding: 20px 40px;
+  font-size: 28px;
   border-radius: 60px;
-  cursor: pointer;
-
-  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-
-
-  
+  background: linear-gradient(90deg, #ff4e50, #f9d423, #ff6f00, #ff4e50);
+  background-size: 400% 400%;
+  animation: gradientShift 4s ease infinite;
+  position: static;
 }
+
 
 .hero button:hover {
   transform: scale(1.05);
