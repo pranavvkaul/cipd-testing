@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Students / Recent Graduates</title>
+<style>
+/* ===== GLOBAL STYLES ===== */
+/* ===== GLOBAL STYLES & RESET ===== */
+body {
+    margin: 0;
+    padding: 0;
+    background: #e8ebed;
+    font-family: "Segoe UI", sans-serif;
+}
+a {
+    /* Ensure links inherit color unless explicitly set and remove underlines */
+    text-decoration: none; 
+    color: inherit;
+}
+
+/* --- HEADER --- */
+.students-header {
+    width: 100%;
+    background: #3d3071; /* Deep Purple */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 25px 30px;
+    box-sizing: border-box;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    /* Large gap to shift the apply-box significantly left */
+    gap: 370px; 
+}
+
+.students-header h2 {
+    font-size: 36px;
+    margin: 0;
+    /* Allows the H2 to take up proportional space, pushing the box left */
+    flex-grow: 0.5; 
+    max-width: 750px; 
+}
+
+/* APPLY BOX (Date and Button Container) */
+.apply-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px; 
+    background-color: #e74c3c; /* Red */
+    color: #fff;
+    padding: 20px 30px; /* Increased padding for larger box */
+    border-radius: 32px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+}
+
+.apply-text p {
+    font-size: 14px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.apply-text h3 {
+    font-size: 20px;
+    margin: 2px 0 0 0;
+    font-weight: 700;
+}
+
+.apply-btn {
+    background: #fff;
+    color: #e74c3c;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 24px; /* Increased button size */
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.apply-btn:hover {
+    background: #ffeae8;
+    transform: translateY(-2px);
+}
+
+/* --- MAIN LAYOUT --- */
+.main-container {
+    display: grid;
+    /* FIX: Balanced grid split for better visual proportions */
+    grid-template-columns: 60% 40%; 
+    align-items: start;
+    width: 100%;
+    gap: 24px;
+    box-sizing: border-box;
+    padding: 20px 40px;
+}
+
+/* LEFT COLUMN */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* CONTENT BOX (Teal List) */
+.content-box {
+    background-color: #086d6f; /* Teal */
+    color: #fff;
+    padding: 18px 28px;
+    border-radius: 6px;
+    margin-bottom: 6px; 
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.content-box ul {
+    margin: 0;
+    padding-left: 24px;
+    list-style-type: disc;
+}
+
+.content-box li {
+    margin-bottom: 10px;
+}
+
+.content-box li::marker {
+    color: #f9d423; /* Gold/Yellow bullet */
+}
+
+/* ACCORDION ITEMS (Now links) */
+.accordion-item {
+    background: #0d4c4c; 
+    color: white;
+    padding: 14px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.25s ease;
+    text-decoration: none; /* Removed underline */
+    display: block; /* Makes the link fill the width */
+}
+
+.accordion-item:hover {
+    background: #11b2b2;
+    transform: translateY(-1px);
+}
+
+/* ===== RIGHT COLUMN (Scrolling Window) ===== */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    
+    /* Ensure the column itself uses all its allocated horizontal space */
+    width: 100%; 
+
+    /* FIX: Change align-items to stretch content horizontally */
+    align-items: stretch; /* <-- Crucial change */
+    
+    gap: 0; 
+    margin-top: 0; 
+    justify-content: flex-start;
+
+    height: 80vh; 
+    overflow: hidden; 
+}
+/* ===== SCROLLING TRACK & ANIMATION ===== */
+.scrolling-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0; 
+    animation: scrollVertical 25s linear infinite; 
+    
+    /* Ensure the track also uses full width */
+    width: 100%; /* <-- New or reinforced rule */
+}
+/* Grouping the duplicated sets */
+.card-set {
+    display: flex;
+    flex-direction: column;
+    /* Consistent gap between the cards */
+    gap: 18px; 
+    /* Gap needed for the loop transition at the bottom */
+    margin-bottom: 18px; 
+}
+
+/* Keyframe Animation Definition */
+@keyframes scrollVertical {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        /* Scrolls up exactly the height of one card-set for smooth loop */
+        transform: translateY(-50%); 
+    }
+}
+
+/* ===== CARD STYLING (Images/Links) ===== */
+.img-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #000;
+    cursor: pointer;
+    width: 100%;
+    margin: 0 !important; /* FIX: Ensures no external margin creates extra gaps */
+}
+
+.img-card img {
+    width: 100%;
+    height: 150px; /* Consistent height */
+    object-fit: cover;
+    display: block;
+    opacity: 0.95;
+    transition: 0.4s ease;
+}
+
+/* Gradient Overlay */
+.img-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    z-index: 1;
+}
+
+/* Text Label */
+/* Update the .img-card span rule */
+.img-card span {
+    position: absolute;
+    /* Remove bottom positioning */
+    top: 50%;         /* Position vertically in the middle */
+    left: 0;
+    right: 0;
+    transform: translateY(-50%); /* Adjust for text height to truly center */
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    /* Increased font size */
+    font-size: 38px; /* <-- Increased from 20px to 28px (adjust as needed) */
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.img-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+}
+
+.img-card:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .main-container {
+        /* Switch to single column stack on smaller screens */
+        grid-template-columns: 1fr;
+        padding: 20px 20px;
+    }
+    .students-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 20px;
+        gap: 20px; /* Reduced gap in single column view */
+    }
+    .apply-box {
+        margin-top: 10px;
+    }
+    /* Disable scrolling effect and restore height for mobile */
+    .right-column {
+        height: auto;
+        overflow: visible;
+        margin-top: 20px; /* Space between left column and cards */
+    }
+    .scrolling-container {
+        animation: none;
+        gap: 18px; /* Restore gap for static vertical stacking */
+    }
+    .card-set {
+        gap: 18px;
+        margin-bottom: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="students-header">
+    <h2>Students / Recent Graduates</h2>
+    <div class="apply-box">
+        <div class="apply-text">
+            <p>STARTS FROM</p>
+            <h3>5 JAN 2026</h3>
+        </div>
+        <a href="https://docs.google.com/forms/u/0/d/1ODKhTQOKFEZlWQhcG8M5h4EvkCqGI26Ka4BFK2Xu3XI/viewform?pli=1&authuser=0&edit_requested=true"
+           target="_blank"
+           class="apply-btn">Apply Now</a>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="left-column">
+        <div class="content-box">
+            <ul>
+                <li>Learn the fundamentals of intelligent product development and design thinking.</li>
+                <li>Gain hands-on experience through real-world projects and mentorship.</li>
+                <li>Prepare for innovation-driven careers with industry-aligned certification.</li>
+            </ul>
+        </div>
+    
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">About the Program</a>
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">Program Eligibility</a>
+
+    <a href="https://docs.google.com/forms/u/0/d/1ODKhTQOKFEZlWQhcG8M5h4EvkCqGI26Ka4BFK2Xu3XI/viewform?pli=1&authuser=0&edit_requested=true" target="_blank" rel="noopener noreferrer" class="accordion-item">Apply Now</a>
+
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">Important Dates & Announcements</a>
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">Fee Structure</a>
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">Scholarship</a>
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">Additional Support for Entrepreneurs/Startups</a>
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">FAQ</a>
+    <a href="../files/brochure.pdf" target="_blank" rel="noopener noreferrer" class="accordion-item">Contact Us</a>
+</div>
+    <div class="right-column">
+    <div class="scrolling-container">
+    <div class="card-set">
+        <a href="events.html" target="_blank" class="img-card">
+            <img src="../images/images_events/events_bg.png" alt="Events"><span>EVENTS</span>
+        </a>
+        <a href="gallery.html" target="_blank" class="img-card">
+            <img src="../images/images_gallery/gallery_bg.png" alt="Gallery"><span>GALLERY</span>
+        </a>
+        <a href="news.html" target="_blank" class="img-card">
+            <img src="../images/images_news/news_bg.png" alt="News"><span>NEWS</span>
+        </a>
+        <a href="blogs.html" target="_blank" class="img-card">
+            <img src="../images/images_blogs/blogs_bg.png" alt="Blogs"><span>BLOGS</span>
+        </a>
+        <a href="../images/images_team/Team.pdf" target="_blank" class="img-card">
+            <img src="../images/images_team/team_bg.png" alt="Team"><span>TEAM</span>
+        </a>
+    </div>
+
+    <div class="card-set">
+        <a href="events.html" target="_blank" class="img-card">
+            <img src="../images/images_events/events_bg.png" alt="Events"><span>EVENTS</span>
+        </a>
+        <a href="gallery.html" target="_blank" class="img-card">
+            <img src="../images/images_gallery/gallery_bg.png" alt="Gallery"><span>GALLERY</span>
+        </a>
+        <a href="news.html" target="_blank" class="img-card">
+            <img src="../images/images_news/news_bg.png" alt="News"><span>NEWS</span>
+        </a>
+        <a href="blogs.html" target="_blank" class="img-card">
+            <img src="../images/images_blogs/blogs_bg.png" alt="Blogs"><span>BLOGS</span>
+        </a>
+        <a href="team.html" target="_blank" class="img-card">
+            <img src="../images/images_team/team_bg.png" alt="Team"><span>TEAM</span>
+        </a>
+    </div>
+</div>
+</div>
+</div>
+
+</body>
+</html>
